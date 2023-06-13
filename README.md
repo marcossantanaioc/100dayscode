@@ -1,16 +1,17 @@
 This is my collection of projects from the 100 Days of Code Course :snake:
 
-# Beginner
-| Day   |                                                         Project & Code                                                           |
-|-------|:--------------------------------------------------------------------------------------------------------------------------------:|
-|1    |   [Band Name Generator]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/01_band_name_generator/main.py')     |
-|2    |        [Tip Calculator]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/02_tip_calculator/main.py')          |
-|3    |       [Treasure Island]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/03_treasure_island/main.py')         |
-|4    |   [Rock-Paper-Scissors]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/04_rock_paper_scissors/main.py')     |
-|5    |    [Password Generator]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/05_password_generator/main.py')      |
-|6    | [Reeborg - Escape the Maze]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/06_escaping_the_maze/main.py')   |
-|7    |               [Hangman]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/07_hangman/main.py')                 |
-|8    |         [Caesar Cipher]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/08_caesar_cipher/main.py')           |
+# Beginner :new:
+| Day | Project | Code                                                                                                  | Description |
+|----:|--------:|-------------------------------------------------------------------------------------------------------:|-------------|
+|1    | Band Name generator | [Repo]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/01_band_name_generator/main.py') |Generate a band name by combining the city you were born with a pet name.
+|2    | Tip Calculator      | [Repo]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/02_tip_calculator/main.py') | Code a calculator to compute tips based on number of people, bill amount and tip.
+| 3   | Treasure Island     | [Repo]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/03_treasure_island/main.py') | Command-prompt treasure island game.
+| 4   | Rock-Paper-Scissors | [Repo]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/04_rock_paper_scissors/main.py') | Python implementation of rock, paper and scissors.
+|  5  | Password Generator  | [Repo]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/05_password_generator/main.py') | Generator a random password.
+| 6   | Reeborg - Escape the Maze | [Repo]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/06_escaping_the_maze/main.py') | Python script to solve [Reeborg's World maze](https://reeborg.ca/reeborg.html).
+| 7   | Hangman | [Repo]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/07_hangman/main.py') | Python implementation of [hangman game](https://en.wikipedia.org/wiki/Hangman_(game)).
+| 8   | Caesar Cipher | [Repo]('https://github.com/marcossantanaioc/100dayscode/tree/master/Beginner/08_caesar_cipher/main.py') | Implementation of Caesar cipher [encryption](https://en.wikipedia.org/wiki/Caesar_cipher)
+
 
 
 
