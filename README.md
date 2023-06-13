@@ -1,6 +1,6 @@
-This is my collection of projects from the 100 Days of Code Course :snake:
+# 100 Days of Code - Python
 
-# Beginner :new:
+## Beginner :new:
 | Day |                   Project |                                                                                                          Code | Description                                                                               |
 |----:|--------------------------:|--------------------------------------------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------|
 |   1 |       Band Name generator | [Repo]('https://github.com/marcossantanaioc/100dayscode/blob/master/Beginner/01_band_name_generator/main.py') | Generate a band name by combining the city you were born with a pet name.                 |
