@@ -12,4 +12,5 @@
 |   7 |                   Hangman |             [Repo](Beginner/07_hangman/main.py) | Python implementation of [hangman game](https://en.wikipedia.org/wiki/Hangman_(game)).    |
 |   8 |             Caesar Cipher |       [Repo](Beginner/08_caesar_cipher/main.py) | Implementation of Caesar cipher [encryption](https://en.wikipedia.org/wiki/Caesar_cipher) |
 |   9 |             Blind Auction |       [Repo](Beginner/09_blind_auction/main.py) | Implementation of a blind auction. The script clears the screen if a new bid is made      |
-|  10 |                Calculator | [Repo](Beginner/10_calculator/main.py)          | Implementation of a calculator                                                            |
+|  10 |                Calculator |          [Repo](Beginner/10_calculator/main.py) | Implementation of a calculator                                                            |
+|  11 |                 Blackjack |           [Repo](Beginner/11_blackjack/main.py) | Implementation of Blackjack card game                                                     |
