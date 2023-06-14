@@ -1,5 +1,5 @@
 from args import get_chips, get_bet
-from cards import check_blackjack, check_if_ace, deal_hand, deal_one, get_cards_total, show_hand
+from cards import check_blackjack, check_if_ace, deal_hand, deal_one, calculate_score, show_hand
 from utils import clear
 from typing import Tuple
 from art import NO_CHIPS, LOGO, THANKS
@@ -101,8 +101,8 @@ def play(chips: int, bet: int):
         print(f"Chips left: {chips}")
         print(f"Bet: {bet}")
 
-        player_points = get_cards_total(player_hand)
-        dealer_points = get_cards_total(dealer_hand)
+        player_points = calculate_score(player_hand)
+        dealer_points = calculate_score(dealer_hand)
 
         print(show_hand('Player', player_hand))
         print(show_hand('Dealer', dealer_hand))
@@ -122,7 +122,7 @@ def play(chips: int, bet: int):
                 card = deal_one()
                 player_hand.append(card)
                 print(show_hand('Player', player_hand))
-                player_points += get_cards_total([card])
+                player_points += calculate_score([card])
 
                 if player_points < 21:
                     deal_more = str(input("Deal more?: 'y' or 'n'")).lower()
@@ -146,7 +146,7 @@ def play(chips: int, bet: int):
             print('Dealer is drawing a card.')
             new_card = deal_one()
             dealer_hand.append(new_card)
-            dealer_points += get_cards_total([new_card])
+            dealer_points += calculate_score([new_card])
             clear()
         print(show_hand('Dealer', dealer_hand))
 

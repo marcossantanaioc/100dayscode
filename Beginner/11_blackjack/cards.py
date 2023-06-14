@@ -78,7 +78,7 @@ def deal_hand():
     return [deal_one(), deal_one()]
 
 
-def get_cards_total(cards):
+def calculate_score(cards):
     total = 0
     for card in cards:
         _, name_value = card
