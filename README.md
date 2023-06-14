@@ -14,3 +14,4 @@
 |   9 |             Blind Auction |       [Repo](Beginner/09_blind_auction/main.py) | Implementation of a blind auction. The script clears the screen if a new bid is made      |
 |  10 |                Calculator |          [Repo](Beginner/10_calculator/main.py) | Implementation of a calculator                                                            |
 |  11 |                 Blackjack |           [Repo](Beginner/11_blackjack/main.py) | Implementation of Blackjack card game                                                     |
+|  12 |              Guess Number |         [Repo](Beginner/12_guessnumber/main.py) | Guess the number                                                                          |
