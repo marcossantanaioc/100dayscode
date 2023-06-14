@@ -1,15 +1,10 @@
 from args import get_chips, get_bet
 from cards import check_blackjack, check_if_ace, deal_hand, deal_one, get_cards_total, show_hand
 from utils import clear
+from typing import Tuple
+from art import NO_CHIPS, LOGO, THANKS
 
-print(""" _     _            _    _            _    
-| |   | |          | |  (_)          | |   
-| |__ | | __ _  ___| | ___  __ _  ___| | __
-| '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
-| |_) | | (_| | (__|   <| | (_| | (__|   < 
-|_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\
-                       _/ |                
-                      |__/     """)
+print(LOGO)
 
 print("""
 Welcome to BlackJack 1.0!
@@ -17,33 +12,55 @@ In this game you win if you manage to
 score higher than the computer, but lower or equal to 21.
 """)
 
+
 # TODO
 # TODO A bug might happen if BET > CHIPS
 # TODO FIX LATER
 
-CHIPS = get_chips()
-BET = get_bet()
-clear()
 
+def take_turn() -> str:
+    """
+    Returns
+    -------
+    action
+        A string representing an action in Blackjack.
+        'hit', 'stand', 'double down' or 'surrender'.
+    """
 
-def take_turn():
     action = str(input("What do you want to do: 'hit', 'stand', 'double down' or 'surrender':\n")).lower()
     return action
 
 
-def check_results(player_points, dealer_points, chips, bet):
-    # Check who wins the game.
+def check_results(player_points: int, dealer_points: int, chips: int, bet: int) -> Tuple[int, str]:
+    """
+    Check which player won the game.
+
+    Parameters
+    ----------
+    player_points
+        Number of points in player's hand.
+    dealer_points
+        Number of points in dealer's hand.
+    chips
+        Amount of money left in player's purse.
+    bet
+        How much was bet in current game.
+
+    Returns
+    -------
+        Updated chips (after win or defeat) and a text showing the results.
+    """
 
     if player_points > dealer_points and player_points <= 21:
         result = f"Player wins!\nPlayer's score: {player_points}\nDealer's score: {dealer_points}"
 
         chips += bet
 
-    elif (player_points < dealer_points and dealer_points < 21) or (dealer_points == 21):
+    elif dealer_points > player_points and dealer_points <= 21:
         result = f"Dealer wins!\nPlayer's score: {player_points}\nDealer's score: {dealer_points}"
         chips -= bet
 
-    elif player_points == dealer_points and (dealer_points <= 21 and player_points <= 21):
+    elif player_points == dealer_points:
         result = f"Push!\nPlayer's score: {player_points}\nDealer's score: {dealer_points}"
         chips -= bet
 
@@ -58,12 +75,29 @@ def check_results(player_points, dealer_points, chips, bet):
     return chips, result
 
 
-def play(chips, bet):
+def play(chips: int, bet: int):
+    """
+    Start a Blackjack session.
+    The game will proceed until
+    a player busts, wins or score's a Blackjack (Ace + 10).
+
+    Blackjack rules:
+
+    -> The goal of blackjack is to beat the dealer's hand without going over 21. -> Each player is dealt 2 cards to
+    start. -> Aces can be worth 1 or 11, face cards (King, Queen, Jack) are worth 10, and all other cards are worth
+    their face value. -> Players can choose to "hit" and receive additional cards in an attempt to get closer to 21,
+    or "stand" and keep their current hand. -> If a player's hand exceeds 21, they "bust" and lose the game. -> Once
+    all players have finished their turns, the dealer reveals their second card and hits until their hand has a value
+    of at least 16. -> If the dealer's hand exceeds 21, all remaining players win the game. -> If the dealer and a
+    player both have hands with a value of less than or equal to 21, the one with the highest value wins. Parameters
+    ---------- chips Amount of money left in player's purse. bet How much was bet in current game.
+    """
+
     START_GAME = True
     player_hand = deal_hand()
     dealer_hand = deal_hand()
 
-    while START_GAME is True:
+    while START_GAME is True and chips > 0:
         print(f"Chips left: {chips}")
         print(f"Bet: {bet}")
 
@@ -134,39 +168,37 @@ def play(chips, bet):
         print(outcome)
 
         print(f"Remaining chips: ${chips}")
+
+        # Check if player wants to keep playing.
         keep_playing = str(input("Keep playing?: 'y' or 'n'"))
         clear()
+
+        if chips <= 0:
+            print("You don't have anymore money!")
+            print(NO_CHIPS)
+            START_GAME = False
 
         if keep_playing == 'y':
             player_hand = deal_hand()
             dealer_hand = deal_hand()
+            bet = get_bet()
+            if bet > chips:
+                bet = int(input("Your previous bet was higher than the amount of money you have."
+                                "\nPick another value: "))
 
         if keep_playing == 'n':
             print("See you next time!\nEND GAME.")
             print(f"Remaining chips: ${chips}")
             START_GAME = False
 
-    print("""
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣀⢠⡤⠤⠖⠒⠒⠒⠲⣆⠀⠀⠀⠀⣾⠋⠉⠉⠛⢷⠀⣴⠖⠒⠤⣄⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⠤⠶⢺⣾⣏⠁⠀⠀⣧⣼⣇⣀⠀⠀⠀⡀⠀⠘⡆⠀⠀⢰⣏⠀⠀⠀⠀⠘⣿⡟⠀⠀⢠⢃⣼⡏⠉⠙⢳⡆⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⣀⡤⠴⠒⠋⠙⣇⣿⠀⠀⠀⣿⣿⠀⠀⠀⢸⣿⣿⣿⠃⠀⢰⣿⡀⠀⠹⡄⠀⢸⣿⠀⠀⠀⠀⠀⢹⡇⠀⠀⢸⡿⣽⠀⠀⠀⡜⠀⣀⡤⠖⠓⠢⢤⣀⠀
-    ⣠⡴⠒⠉⠁⠀⠀⠀⠀⠀⠸⣿⡇⠀⠀⠘⠛⠃⠀⠀⠈⡟⠉⣿⠀⠀⠘⠛⠃⠀⠀⢷⠀⢸⣿⠀⠀⢠⡀⠀⠀⠀⠀⠀⣿⢧⡇⠀⠀⠸⠗⠚⠁⠀⠀⠀⣀⣠⣾⠃
-    ⣿⡇⠀⠀⠀⠀⠀⠀⣶⣶⣿⢿⢹⠀⠀⠀⢀⣀⠀⠀⠀⢳⠀⣿⠀⠀⢀⣀⣤⠀⠀⠘⣇⢸⡏⠀⠀⢸⣧⠀⠀⠀⠀⢸⣿⡿⠀⠀⢀⠀⠀⠀⢀⣤⣶⣿⠿⠛⠁⠀
-    ⢧⣹⣶⣾⣿⡄⠀⠀⠸⡟⠋⠘⡜⡆⠀⠀⢻⣿⡇⠀⠀⢸⡀⣿⠀⠀⢸⣿⡿⡇⠀⠀⢸⣿⡇⠀⠀⢸⡿⡆⠀⠀⠀⣾⣿⠃⠀⠀⣾⡇⠀⠀⠈⡟⠉⠀⠀⠀⠀⠀
-    ⠘⣿⡿⠿⢿⣧⠀⠀⠀⢳⡀⠀⣇⢱⠀⠀⠈⣿⣷⠀⣀⣸⣷⣿⣤⣤⣼⠋⣇⣹⣶⣶⣾⣿⡿⢲⣶⣾⡇⣿⣤⣀⣀⣿⡏⠀⠀⣼⡏⢧⠀⠀⠀⣇⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠸⡞⣇⠀⠀⠀⢧⠀⢸⣈⣷⣶⣶⣿⣿⣿⣿⣿⣿⣿⣽⣿⡏⢀⡼⠟⠛⠻⢿⡿⠿⠿⣿⣁⣿⣿⣿⣿⣿⣿⣿⣶⣴⢿⠁⢸⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⢹⣼⣦⣤⣶⣿⠁⣀⣿⠿⠿⣿⣫⣿⠉⠁⠀⠀⠀⡏⠀⣴⠏⠀⠀⠀⠀⠀⠹⣆⠀⢠⣿⠀⠀⠀⢈⠟⢻⡿⠿⣅⣘⡆⣸⣇⠀⠀⢸⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠻⠿⠿⠛⠃⢠⣿⣷⣄⠀⠈⠙⠋⠀⠀⠀⠀⣸⢁⡾⠁⠀⠀⣠⣤⡀⠀⠀⠸⣤⡞⡇⠀⠀⠀⢸⣰⣿⠃⠀⠀⢹⣿⣿⣿⣿⣦⣼⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⢿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⣿⣾⠇⠀⠀⣸⣿⣿⢿⠀⠀⠀⣿⢁⡇⠀⠀⢀⣿⣿⡏⠀⠀⠀⡼⠀⢙⣿⠛⠻⣏⡀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣷⠀⠀⠀⠀⢸⡿⡿⠀⠀⠀⡏⢹⠟⡟⠀⠀⠀⡿⢸⠀⠀⠀⢸⣿⡿⠀⠀⠀⢠⠇⡰⢋⡏⠀⠀⠀⢙⡆⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⡿⡿⠀⠀⠀⠀⣸⡇⡇⠀⠀⠀⠻⠾⠞⠁⠀⠀⢀⡇⡏⠀⠀⠀⢸⣿⠃⠀⠀⠀⡼⣰⠃⡞⠀⠀⠀⠀⡾⠁⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡇⡇⠀⠀⠀⠀⣿⣇⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣃⡇⠀⠀⠀⠀⠀⠀⠀⠀⣼⣷⠃⣼⡀⠀⠀⢀⡞⠁⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⢸⠃⠀⠀⠀⢀⡇⢿⣿⣧⣀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣽⣿⣷⣤⡞⠁⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣼⣤⣶⣶⣶⡿⠁⠈⢿⣿⣿⣿⣿⣿⣿⣿⠿⠃⢸⣿⣿⣷⣤⣄⣀⣀⣤⣾⣏⣤⡟⠁⠀⠈⠻⡍⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠿⠿⠿⠟⠛⠁⠀⠀⠀⠉⠛⠛⠛⠛⠉⠁⠀⠀⠀⠙⠿⢿⣿⣿⡿⠿⠋⢀⣿⣿⣧⡀⠀⠀⣠⡇⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    """)
+    clear()
+    print(THANKS)
 
 
-play(CHIPS, BET)
+if __name__ == '__main__':
+    CHIPS = get_chips()
+    BET = get_bet()
+    if BET > CHIPS:
+        BET = int(input("Your previous bet was higher than the amount of money you have.\nPick another value: "))
+    clear()
+    play(CHIPS, BET)
