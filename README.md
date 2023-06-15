@@ -16,3 +16,4 @@
 |  11 |                 Blackjack |           [Repo](Beginner/11_blackjack/main.py) | Implementation of Blackjack card game                                                     |
 |  12 |              Guess Number |         [Repo](Beginner/12_guessnumber/main.py) | Guess the number                                                                          |
 |  14 |           Higher or Lower |         [Repo](Beginner/14_higherlower/main.py) | Guess which of two entries has more followers                                             |
+|  15 |            Coffee Machine |   [Repo](Intermediate/15_coffeemachine/main.py) | A virtual coffee machine                                                                  |
