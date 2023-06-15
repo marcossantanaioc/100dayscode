@@ -15,3 +15,4 @@
 |  10 |                Calculator |          [Repo](Beginner/10_calculator/main.py) | Implementation of a calculator                                                            |
 |  11 |                 Blackjack |           [Repo](Beginner/11_blackjack/main.py) | Implementation of Blackjack card game                                                     |
 |  12 |              Guess Number |         [Repo](Beginner/12_guessnumber/main.py) | Guess the number                                                                          |
+|  14 |           Higher or Lower |         [Repo](Beginner/14_higherlower/main.py) | Guess which of two entries has more followers                                             |
