@@ -52,7 +52,7 @@ def prepare_inputs(dataset: list) -> list:
     return info_strs
 
 
-def compare(dataset: list, player_answer: str) -> int:
+def check_answer(dataset: list, player_answer: str) -> int:
     """
     Checks the player's answer
     and computes the score.
@@ -105,7 +105,7 @@ def play():
         print(f"Against B: {selected_data_formated[1]}")
 
         answer = str(input("Who has more followers? Type 'A' or 'B':"))
-        result = compare(selected_data, answer)
+        result = check_answer(selected_data, answer)
         clear()
 
         if result >= 0:
