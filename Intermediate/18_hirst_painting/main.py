@@ -38,20 +38,22 @@ colors_scheme = [
     (34, 151, 151), (65, 66, 66)]
 
 
-for idx in range(0, 10):
-    if idx % 2 == 0:
-        timmy.setheading(0)
-    for i in range(9):
-        timmy.color(random.choice(colors_scheme))
-        timmy.dot(size=20)
-        timmy.penup()
-        timmy.forward(50)
+def hirst():
+    for idx in range(0, 10):
+        if idx % 2 == 0:
+            timmy.setheading(0)
+        for i in range(9):
+            timmy.color(random.choice(colors_scheme))
+            timmy.dot(size=20)
+            timmy.penup()
+            timmy.forward(50)
 
-    timmy.dot(size=20)
-    timmy.setheading(90)
-    if idx != 9:
-        timmy.forward(50)
-        timmy.setheading(-180)
+        timmy.dot(size=20)
+        timmy.setheading(90)
+        if idx != 9:
+            timmy.forward(50)
+            timmy.setheading(-180)
+
 
 screen = Screen()
 screen.exitonclick()
