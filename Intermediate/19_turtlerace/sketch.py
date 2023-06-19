@@ -1,5 +1,3 @@
-import colorgram
-import random
 from turtle import Turtle, Screen, colormode
 
 timmy = Turtle()
@@ -33,12 +31,10 @@ def move_backwards():
 def up():
     heading = timmy.heading() + 10
     timmy.setheading(heading)
-    #return timmy.forward(10)
 
 def down():
     heading = timmy.heading() - 10
     timmy.setheading(heading)
-    #return timmy.forward(10)
 
 screen.listen()
 screen.onkey(fun=up,key='w')
