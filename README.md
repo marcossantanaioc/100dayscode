@@ -16,6 +16,11 @@
 |  11 |                     Blackjack |            [Repo](Beginner/11_blackjack/main.py) | Implementation of Blackjack card game                                                     |
 |  12 |                  Guess Number |          [Repo](Beginner/12_guessnumber/main.py) | Guess the number                                                                          |
 |  14 |               Higher or Lower |          [Repo](Beginner/14_higherlower/main.py) | Guess which of two entries has more followers                                             |
+
+
+## Intermediate :star:
+| Day |                       Project |                                             Code | Description                                                                               |
+|----:|------------------------------:|-------------------------------------------------:|-------------------------------------------------------------------------------------------|
 |  15 |                Coffee Machine |    [Repo](Intermediate/15_coffeemachine/main.py) | A virtual coffee machine                                                                  |
 |  16 | Coffee Machine - OPP refactor |              [Repo](Intermediate/16_OOP/main.py) | A refactor of the virtual coffee machine using OOP                                        |
 |  17 |                          Quiz |            [Repo](Intermediate/17_quizz/main.py) | A simple quiz                                                                             |
