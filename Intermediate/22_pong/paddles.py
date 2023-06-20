@@ -68,14 +68,10 @@ class Paddle:
         piece.goto(x=0, y=0)
         piece.forward(0)
 
-        #whole_snake.append(piece)
 
         return piece
 
-    def move(self, distance: int = 20) -> List[Turtle]:
-        # for index in range(len(self.snake) - 1, 0, -1):  # Make the tail follow the head by using negative indices
-        #     new_x, new_y = self.paddle[index - 1].xcor(), self.snake[index - 1].ycor()
-        #     self.snake[index].goto(new_x, new_y)
+    def move(self, distance: int = 0) -> List[Turtle]:
         self.paddle.forward(distance)
         return self.paddle
 
@@ -111,7 +107,8 @@ game_is_on = True
 while game_is_on:
     screen.update()
     time.sleep(0.05)
-    paddle.move()
+    paddle.setheading(90)
+    paddle.move(10)
 
     screen.listen()
     screen.onkey(fun=paddle.up, key='w')
