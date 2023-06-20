@@ -48,9 +48,4 @@ class Board:
 
         return self.screen
 
-screen = Board(width=800, height=600).draw_screen()
-screen.update()
-
-# End screen
-screen.exitonclick()
 
