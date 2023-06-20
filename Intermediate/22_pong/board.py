@@ -1,4 +1,3 @@
-
 from turtle import Turtle, Screen
 
 # Project breakdown
@@ -10,8 +9,9 @@ ball: write a class to handle the ball
 score: write a class to handle the score
 """
 
+
 class Board:
-    def __init__(self, width: int = 600, height: int = 600):
+    def __init__(self, width: int = 800, height: int = 400):
         self.width = width
         self.height = height
         self.screen = Screen()
@@ -20,7 +20,7 @@ class Board:
         self.screen.bgcolor('black')
         self.screen.tracer(0)
 
-    def draw_line(self, heading: int=90, position: int=0):
+    def draw_line(self, heading: int = 90, position: int = 0):
         point = Turtle()
         point.setheading(heading)
         point.shape("square")  # Make it a turtle
@@ -43,9 +43,6 @@ class Board:
             if point.ycor() == self.height:
                 for _ in range(2 * num_pieces):
                     point = self.draw_line(position=pos, heading=270)
-                    print(point.ycor())
                     pos -= spacing
 
         return self.screen
-
-

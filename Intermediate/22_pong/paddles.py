@@ -14,12 +14,12 @@ class Paddle(Turtle):
 
     """
 
-    def __init__(self, x_position: int = 280):
+    def __init__(self, x_position: int = 280, color: str='white'):
         super().__init__()
         self.shape("square")  # Make it a turtle
-        self.color('white')
+        self.color(color)
         self.shapesize(1, 3, 1)  # Shape size
-        self.speed('slow')  # Speed
+        self.speed('fast')  # Speed
         self.width(20)
         self.penup()
         self.setheading(90)
@@ -31,9 +31,9 @@ class Paddle(Turtle):
 
         """
         self.setheading(90)
-        self.forward(50)
-        if self.ycor() >= 300:
-            self.goto(x=self.xcor(), y=270)
+        self.forward(20)
+        if self.ycor() >= 190:
+            self.goto(x=self.xcor(), y=190)
 
     def down(self):
         """
@@ -41,6 +41,6 @@ class Paddle(Turtle):
 
         """
         self.setheading(270)
-        self.forward(50)
-        if self.ycor() <= -300:
-            self.goto(x=self.xcor(), y=-260)
+        self.forward(20)
+        if self.ycor() <= -190:
+            self.goto(x=self.xcor(), y=-190)
