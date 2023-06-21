@@ -39,7 +39,6 @@ while game_is_on:
             score_board.game_over()
             game_is_on = False
 
-
     screen.listen()
     screen.onkey(fun=snake.up,key='w')
     screen.onkey(fun=snake.down,key='s')

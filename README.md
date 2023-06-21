@@ -30,3 +30,4 @@
 |  21 |           Snake Game - Part 2 | [Repo](Intermediate/21_snake_game_part2/main.py) | Part 2 of the Snake Game - complete Snake Game.                           |
 |  22 |                          Pong |             [Repo](Intermediate/22_pong/main.py) | Implementation of Pong using turtle                                       |
 |  23 |          Turtle crossing game |   [Repo](Intermediate/23_turtlecrossing/main.py) | Make the turtle cross the road. Dont get squished!                        |
+|  24 |   Writing letters with Python |      [Repo](Intermediate/24_files_paths/main.py) | Add recipient to multiple letters                                         |
