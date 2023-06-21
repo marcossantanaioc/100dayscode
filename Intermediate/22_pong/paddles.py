@@ -14,7 +14,7 @@ class Paddle(Turtle):
 
     """
 
-    def __init__(self, x_position: int = 280, color: str='white'):
+    def __init__(self, x_position: int = 280, color: str = 'white'):
         super().__init__()
         self.shape("square")  # Make it a turtle
         self.color(color)
