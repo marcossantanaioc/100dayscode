@@ -1,6 +1,5 @@
 import time
 from turtle import Screen
-
 from car_manager import CarManager
 from player import Player
 from scoreboard import ScoreBoard
@@ -21,11 +20,13 @@ while game_is_on:
     cars.create_car()
     cars.move()
 
+    # Check if player is hit by a car.
     for car in cars.all_cars:
         if player.distance(car) <= 15:
             score.game_over()
             game_is_on = False
 
+    # Check if the player is at top of the screen.
     if player.ycor() >= 300:
         score.level_up()
         player.goto(x=0, y=-280)
