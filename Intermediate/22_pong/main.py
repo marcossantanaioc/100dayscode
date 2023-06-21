@@ -28,7 +28,6 @@ while game_is_on:
     elif paddle2.distance(ball) > 30 and ball.xcor() < -360:
         ball.goto(0, 0)
         player1_score.score()
-        print("Player 1 score!")
 
     if paddle.distance(ball) <= 31 and ball.xcor() >= 360:
         ball.hit()
@@ -36,7 +35,6 @@ while game_is_on:
     elif paddle.distance(ball) > 30 and ball.xcor() > 360:
         ball.goto(0, 0)
         player2_score.score()
-        print("Player 2 score!")
 
     screen.onkey(fun=paddle.up, key='w')
     screen.onkey(fun=paddle.down, key='s')
