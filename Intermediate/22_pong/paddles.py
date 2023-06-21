@@ -27,7 +27,7 @@ class Paddle(Turtle):
 
     def up(self):
         """
-        Moves the snake up.
+        Moves the paddle up.
 
         """
         self.setheading(90)
@@ -37,7 +37,7 @@ class Paddle(Turtle):
 
     def down(self):
         """
-        Moves the snake down.
+        Moves the paddle down.
 
         """
         self.setheading(270)

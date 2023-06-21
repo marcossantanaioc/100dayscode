@@ -13,9 +13,9 @@ class ScoreBoard(Turtle):
         self.hideturtle()
         self.points = 0
         self.align = align
-        self.text = self.write(f"{self.points}", move=False, align=self.align, font=(self.FONT, self.FONT_SIZE))
+        self.write(f"{self.points}", move=False, align=self.align, font=(self.FONT, self.FONT_SIZE))
 
     def score(self):
         self.points += 1
         self.clear()
-        self.text = self.write(f"{self.points}", move=False, align=self.align, font=(self.FONT, self.FONT_SIZE))
+        self.write(f"{self.points}", move=False, align=self.align, font=(self.FONT, self.FONT_SIZE))
