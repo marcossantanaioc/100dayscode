@@ -3,7 +3,7 @@ from turtle import Turtle
 
 class ScoreBoard(Turtle):
     FONT = 'Courier'
-    FONT_SIZE = 44
+    FONT_SIZE = 46
 
     def __init__(self, x_position: int = 100, y_position: int = 100, align: str = 'right'):
         super().__init__()
