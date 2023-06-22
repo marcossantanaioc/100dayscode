@@ -34,3 +34,4 @@
 |  25 |               Intro to pandas | [Repo](Intermediate/25_pandas/us-states-game-start/main.py) | Guess USA state's names using pandas                                       |
 |  26 |            NATO code alphabet |                        [Repo](Intermediate/26_nato/main.py) | Convert Names into NATO phonetic alphabet.                                 |
 |  27 |              Intro to TKinter |                     [Repo](Intermediate/27_tkinter/main.py) | Basic TKinter syntax.                                                      |
+|  28 |               Pomodoro method |                    [Repo](Intermediate/28_pomodoro/main.py) | Tkinter version of the Pomodoro Method.                                    |
