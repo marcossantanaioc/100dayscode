@@ -32,3 +32,5 @@
 |  23 |          Turtle crossing game |              [Repo](Intermediate/23_turtlecrossing/main.py) | Make the turtle cross the road. Dont get squished!                         |
 |  24 |   Writing letters with Python |                 [Repo](Intermediate/24_files_paths/main.py) | Add recipient to multiple letters.                                         |
 |  25 |               Intro to pandas | [Repo](Intermediate/25_pandas/us-states-game-start/main.py) | Guess USA state's names using pandas                                       |
+|  26 |            NATO code alphabet |                        [Repo](Intermediate/26_nato/main.py) | Convert Names into NATO phonetic alphabet.                                 |
+|  27 |              Intro to TKinter |                     [Repo](Intermediate/27_tkinter/main.py) | Basic TKinter syntax.                                                      |
