@@ -1,0 +1,14 @@
+{
+    "Amazon": {
+        "email": "mvssantana@mail.com",
+        "password": "123"
+    },
+    "Facebook": {
+        "email": "santana@mail.com",
+        "password": "123"
+    },
+    "Twitter": {
+        "email": "mvssantana@mail.com",
+        "password": "udemy"
+    }
+}

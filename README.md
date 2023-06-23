@@ -19,19 +19,21 @@
 
 
 ## Intermediate :star:
-| Day |                       Project |                                                        Code | Description                                                                |
-|----:|------------------------------:|------------------------------------------------------------:|----------------------------------------------------------------------------|
-|  15 |                Coffee Machine |               [Repo](Intermediate/15_coffeemachine/main.py) | A virtual coffee machine.                                                  |
-|  16 | Coffee Machine - OPP refactor |                         [Repo](Intermediate/16_OOP/main.py) | A refactor of the virtual coffee machine using OOP.                        |
-|  17 |                          Quiz |                       [Repo](Intermediate/17_quizz/main.py) | A simple quiz.                                                             |
-|  18 |                 Hirst Paiting |              [Repo](Intermediate/18_hirst_painting/main.py) | Simulating Damian Hirst art using turtle!                                  |
-|  19 |                   Turtle race |                  [Repo](Intermediate/19_turtlerace/main.py) | Put turtles to race over the canvas!                                       |
-|  20 |           Snake Game - Part 1 |                  [Repo](Intermediate/20_snake_game/main.py) | Part 1 of the Snake Game - creates a snake and make it move on the canvas. |
-|  21 |           Snake Game - Part 2 |            [Repo](Intermediate/21_snake_game_part2/main.py) | Part 2 of the Snake Game - complete Snake Game.                            |
-|  22 |                          Pong |                        [Repo](Intermediate/22_pong/main.py) | Implementation of Pong using turtle.                                       |
-|  23 |          Turtle crossing game |              [Repo](Intermediate/23_turtlecrossing/main.py) | Make the turtle cross the road. Dont get squished!                         |
-|  24 |   Writing letters with Python |                 [Repo](Intermediate/24_files_paths/main.py) | Add recipient to multiple letters.                                         |
-|  25 |               Intro to pandas | [Repo](Intermediate/25_pandas/us-states-game-start/main.py) | Guess USA state's names using pandas                                       |
-|  26 |            NATO code alphabet |                        [Repo](Intermediate/26_nato/main.py) | Convert Names into NATO phonetic alphabet.                                 |
-|  27 |              Intro to TKinter |                     [Repo](Intermediate/27_tkinter/main.py) | Basic TKinter syntax.                                                      |
-|  28 |               Pomodoro method |                    [Repo](Intermediate/28_pomodoro/main.py) | Tkinter version of the Pomodoro Method.                                    |
+| Day |                         Project |                                                                   Code | Description                                                                |
+|----:|--------------------------------:|-----------------------------------------------------------------------:|----------------------------------------------------------------------------|
+|  15 |                  Coffee Machine |                          [Repo](Intermediate/15_coffeemachine/main.py) | A virtual coffee machine.                                                  |
+|  16 |   Coffee Machine - OPP refactor |                                    [Repo](Intermediate/16_OOP/main.py) | A refactor of the virtual coffee machine using OOP.                        |
+|  17 |                            Quiz |                                  [Repo](Intermediate/17_quizz/main.py) | A simple quiz.                                                             |
+|  18 |                   Hirst Paiting |                         [Repo](Intermediate/18_hirst_painting/main.py) | Simulating Damian Hirst art using turtle!                                  |
+|  19 |                     Turtle race |                             [Repo](Intermediate/19_turtlerace/main.py) | Put turtles to race over the canvas!                                       |
+|  20 |             Snake Game - Part 1 |                             [Repo](Intermediate/20_snake_game/main.py) | Part 1 of the Snake Game - creates a snake and make it move on the canvas. |
+|  21 |             Snake Game - Part 2 |                       [Repo](Intermediate/21_snake_game_part2/main.py) | Part 2 of the Snake Game - complete Snake Game.                            |
+|  22 |                            Pong |                                   [Repo](Intermediate/22_pong/main.py) | Implementation of Pong using turtle.                                       |
+|  23 |            Turtle crossing game |                         [Repo](Intermediate/23_turtlecrossing/main.py) | Make the turtle cross the road. Dont get squished!                         |
+|  24 |     Writing letters with Python |                            [Repo](Intermediate/24_files_paths/main.py) | Add recipient to multiple letters.                                         |
+|  25 |                 Intro to pandas |            [Repo](Intermediate/25_pandas/us-states-game-start/main.py) | Guess USA state's names using pandas                                       |
+|  26 |              NATO code alphabet |                                   [Repo](Intermediate/26_nato/main.py) | Convert Names into NATO phonetic alphabet.                                 |
+|  27 |                Intro to TKinter |                                [Repo](Intermediate/27_tkinter/main.py) | Basic TKinter syntax.                                                      |
+|  28 |                 Pomodoro method |                               [Repo](Intermediate/28_pomodoro/main.py) | Tkinter version of the Pomodoro Method.                                    |
+|  29 |          Password generator GUI |                     [Repo](Intermediate/29_password_generator/main.py) | Password generator with tkinter.                                           |
+|  30 | Password generator GUI - Update | [Repo](Intermediate/30_handling_errors/password_generator_fix/main.py) | Updated version of the password generator.                                 |
