@@ -62,6 +62,7 @@ def find_password():
         except KeyError:
             messagebox.askokcancel(title='Details Not Found', message=f"No details for {wb_address} exists.")
 
+
 def save_file(info):
     try:
         with open('data.json', 'r') as f:
