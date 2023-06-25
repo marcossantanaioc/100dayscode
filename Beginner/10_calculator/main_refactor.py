@@ -14,14 +14,18 @@ has_result = False
 # Function to update expression
 # in the text entry box
 def press(num):
+    # TODO Find a way to erase the results if another button is pressed.
+    #  At the moment, pressing another button just appends to the results.
     # point out the global expression variable
-    global expression
+    global expression, has_result
 
-    # concatenation of string
-    expression = expression + str(num)
-
-    result_text.config(text=expression)
-    return num
+    if not has_result:
+        # concatenation of string
+        expression = expression + str(num)
+        result_text.config(text=expression)
+    else:
+        expression = "" + str(num)
+        result_text.config(text=expression)
 
 
 def add():
@@ -48,13 +52,12 @@ def division():
 
 def equals():
     global expression, has_result
-    if not has_result:
-        math_expression = expression + " = "
-        res = str(eval(expression))
-        math_expression = math_expression + res
-        result_text.config(text=math_expression)
-        expression = res
-        has_result = True
+    math_expression = expression + " = "
+    res = str(eval(expression))
+    math_expression = math_expression + res
+    result_text.config(text=math_expression)
+    expression = res
+    has_result = True
 
 
 # Create canvas
