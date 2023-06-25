@@ -9,6 +9,7 @@ result_text = tkinter.Label(text='0', font=('Arial', 56, 'bold'))
 result_text.grid(column=3, row=0, columnspan=2)
 
 expression = ""
+previous_result = ""
 has_result = False
 
 # Function to update expression
@@ -19,36 +20,32 @@ def press(num):
     # point out the global expression variable
     global expression, has_result
 
-    if not has_result:
-        # concatenation of string
-        expression = expression + str(num)
-        result_text.config(text=expression)
-    else:
-        expression = "" + str(num)
-        result_text.config(text=expression)
+    expression = expression + str(num)
+    result_text.config(text=expression)
 
 
 def add():
     global expression
-    result_text.config(text='')
     expression = expression + " + "
+    result_text.config(text=expression)
 
 def minus():
     global expression
-    result_text.config(text='')
     expression = expression + " - "
+    result_text.config(text=expression)
+
 
 
 def multiply():
     global expression
-    result_text.config(text='')
     expression = expression + " * "
+    result_text.config(text=expression)
 
 
 def division():
     global expression
-    result_text.config(text='')
     expression = expression + " / "
+    result_text.config(text=expression)
 
 def equals():
     global expression, has_result
