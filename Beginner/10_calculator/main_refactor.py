@@ -1,41 +1,35 @@
-# from replit import clear # If not using replit
-import os
 import tkinter
 
-# Helper functions
 
-def add(n1, n2):
-    """
-    Adds two numbers `n1`
-    and `n2`
-    Parameters
-    ----------
-    n1 : float or int
-      A float or int.
-    n2: float or int
-      Another float or int.
-    Returns
-    -------
-    result : float
-      `n1` + `n2`
-    """
-
-    res = n1 + n2
-    return res
-
-# Set window
 window = tkinter.Tk()
 window.title('Calculator')
 window.config(width=2000, height=2000)
 
+# Result text
+result_text = tkinter.Label(text='0', font=('Arial', 56, 'bold'))
+result_text.grid(column=3, row=0, columnspan=2)
+
+expression = ""
+
+# Function to update expression
+# in the text entry box
+def press(num):
+    # point out the global expression variable
+    global expression
+
+    # concatenation of string
+    expression = expression + str(num)
+
+    result_text.config(text=expression)
+
 
 # Create canvas
 button1_image = tkinter.PhotoImage(file='images/1.png')
-button1 = tkinter.Button(image=button1_image, highlightthickness=0)
+button1 = tkinter.Button(image=button1_image, text='1', highlightthickness=0, command=lambda : press(1))
 button1.grid(row=0, column=0)
 
 button2_image = tkinter.PhotoImage(file='images/2.png')
-button2 = tkinter.Button(image=button2_image, highlightthickness=0)
+button2 = tkinter.Button(image=button2_image, highlightthickness=0, command=lambda x: press(2))
 button2.grid(row=0, column=1)
 
 button3_image = tkinter.PhotoImage(file='images/3.png')
@@ -66,7 +60,6 @@ button9_image = tkinter.PhotoImage(file='images/9.png')
 button9 = tkinter.Button(image=button9_image, highlightthickness=0)
 button9.grid(row=2, column=2)
 
-
 add_image = tkinter.PhotoImage(file='images/add.png')
 add_button = tkinter.Button(image=add_image, highlightthickness=0)
 add_button.grid(row=2, column=3)
@@ -82,11 +75,6 @@ times_button.grid(row=1, column=3)
 division_image = tkinter.PhotoImage(file='images/division.png')
 division_button = tkinter.Button(image=division_image, highlightthickness=0)
 division_button.grid(row=1, column=4)
-
-# Result text
-result_text = tkinter.Label(text='0', font=('Arial', 56, 'bold'))
-result_text.grid(column=3, row=0, columnspan=2)
-
 
 
 window.mainloop()
