@@ -3,8 +3,8 @@ import time
 import pandas as pd
 import requests
 
-KEY = 'jBEK1sIZyl9AZG2tQvSit0XRYtZ9IhxB'
-SECRET = 'DOvAfScJUgZPxEqR'
+KEY = 'XXXXXXXXXX'
+SECRET = 'XXXXXXX'
 
 
 # Fetch some date from the endpoint
