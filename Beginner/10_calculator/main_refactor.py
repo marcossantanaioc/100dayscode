@@ -12,8 +12,25 @@ expression = ""
 previous_result = ""
 has_result = False
 
+
 # Function to update expression
 # in the text entry box
+
+def decimals():
+    # TODO Add support for decimal points
+    pass
+    # global expression, has_result
+    # if has_result:
+    #     result_text.config(text=expression)
+    #     if "+" in expression or "-" in expression or "*" in expression or "/" in expression:
+    #         expression = expression + str(num)
+    #         result_text.config(text=expression)
+    #
+    # else:
+    #     expression = expression + str(num)
+    #     result_text.config(text=expression)
+
+
 def press(num):
     global expression, has_result
     if has_result:
@@ -32,6 +49,7 @@ def add():
     expression = expression + " + "
     result_text.config(text=expression)
 
+
 def minus():
     global expression
     expression = expression + " - "
@@ -43,10 +61,12 @@ def multiply():
     expression = expression + " * "
     result_text.config(text=expression)
 
+
 def division():
     global expression
     expression = expression + " / "
     result_text.config(text=expression)
+
 
 def equals():
     global expression, has_result
@@ -57,6 +77,7 @@ def equals():
         result_text.config(text=math_expression)
         expression = res
         has_result = True
+
 
 def clear():
     global has_result, expression
@@ -120,6 +141,14 @@ division_button.grid(row=1, column=4)
 
 equal_image = tkinter.PhotoImage(file='images/equals.png')
 equal_button = tkinter.Button(image=equal_image, highlightthickness=0, command=equals)
-equal_button.grid(row=0, column=5, rowspan=3)
+equal_button.grid(row=1, column=5)
+
+clear_image = tkinter.PhotoImage(file='images/clear.png')
+clear_button = tkinter.Button(image=clear_image, highlightthickness=0, command=clear)
+clear_button.grid(row=2, column=6)
+
+dot_image = tkinter.PhotoImage(file='images/dot.png')
+dot_button = tkinter.Button(image=dot_image, highlightthickness=0, command=decimals)
+dot_button.grid(row=2, column=5)
 
 window.mainloop()
