@@ -3,7 +3,6 @@ from quiz_brain import QuizBrain
 
 THEME_COLOR = "#375362"
 
-
 class QuizInterface:
     def __init__(self, quiz: QuizBrain, width: int = 600, height: int = 500):
         self.quiz = quiz
