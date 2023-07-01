@@ -1,3 +1,4 @@
+
 import requests
 import os
 from twilio.rest import Client
@@ -7,6 +8,7 @@ LAT = 53.34
 LON = 10.0
 URL = f"https://api.openweathermap.org/data/3.0/onecall"
 
+
 client = Client(os.environ['TWILLIO_SID'], os.environ['TWILLIO_TOKEN'])
 # Request
 params = {'lat': LAT,
@@ -14,6 +16,7 @@ params = {'lat': LAT,
           'appid': os.environ['WEATHER_KEY']}
 
 response = requests.get(URL, params=params)
+
 
 
 response.raise_for_status()
