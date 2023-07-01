@@ -21,7 +21,6 @@ URL = f"https://api.openweathermap.org/data/3.0/onecall"
 
 >>>>>>> day 35
 client = Client(os.environ['TWILLIO_SID'], os.environ['TWILLIO_TOKEN'])
-
 # Request
 params = {'lat': LAT,
           'lon': LON,
