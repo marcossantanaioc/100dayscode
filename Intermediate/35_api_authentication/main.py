@@ -17,8 +17,6 @@ params = {'lat': LAT,
 
 response = requests.get(URL, params=params)
 
-
-
 response.raise_for_status()
 weather_data = response.json()['hourly'][:12]
 WILL_RAIN = False
