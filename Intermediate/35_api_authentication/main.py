@@ -1,24 +1,13 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> day 35
 import requests
 import os
 from twilio.rest import Client
 
-<<<<<<< HEAD
-=======
-
->>>>>>> day 35
 # Openweather configuration
 LAT = 53.34
 LON = 10.0
 URL = f"https://api.openweathermap.org/data/3.0/onecall"
 
-<<<<<<< HEAD
-=======
 
->>>>>>> day 35
 client = Client(os.environ['TWILLIO_SID'], os.environ['TWILLIO_TOKEN'])
 # Request
 params = {'lat': LAT,
@@ -28,10 +17,6 @@ params = {'lat': LAT,
 response = requests.get(URL, params=params)
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> day 35
 response.raise_for_status()
 weather_data = response.json()['hourly'][:12]
 WILL_RAIN = False
