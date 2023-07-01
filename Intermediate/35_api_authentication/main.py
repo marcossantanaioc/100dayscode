@@ -1,16 +1,40 @@
 import requests
-import pandas as pd
+import os
+from twilio.rest import Client
 
 
-API_KEY = "1a9b78c971ff4eb87ff6531b09f44cd1"
-LAT = 51.758360
-LON = -1.216770
+# Openweather configuration
+
+LAT = 53.34
+LON = 10.0
 URL = f"https://api.openweathermap.org/data/3.0/onecall"
-params = {'lat':LAT,
-          'lon':LON,
-          'appid': API_KEY}
-print(URL)
+
+
+client = Client(os.environ['TWILLIO_SID'], os.environ['TWILLIO_TOKEN'])
+
+# Request
+params = {'lat': LAT,
+          'lon': LON,
+          'appid': os.environ['WEATHER_KEY']}
 
 response = requests.get(URL, params=params)
+
+
 response.raise_for_status()
-print(response)
+weather_data = response.json()['hourly'][:12]
+WILL_RAIN = False
+
+
+for hour_index, hour in enumerate(weather_data):
+    next_hour_forecast = hour['weather'][0]
+    if next_hour_forecast['id'] < 700:
+       WILL_RAIN = True
+
+
+if WILL_RAIN:
+    message = client.messages.create(
+                                  body='Bring an umbrella because it will rain!',
+                                  from_='whatsapp:XXXXXXXXXXXXXXXX',
+                                  to='whatsapp:XXXXXXXXXXXXXXXXXXX'
+                              )
+    print(message.status)
