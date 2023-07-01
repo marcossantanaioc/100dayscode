@@ -1,11 +1,15 @@
 import os
+from twilio.rest import Client
+import pandas as pd
 import requests
 import datetime as dt
-from typing import Dict
+from typing import Dict, Union, List
 
 URL = "https://www.alphavantage.co/query"
+NEWS_URL = "http://api.mediastack.com/v1/news"
+client = Client(os.environ['TWILLIO_SID'], os.environ['TWILLIO_TOKEN'])
 STOCK = "TSLA"
-COMPANY_NAME = "Tesla Inc"
+COMPANY_NAME = "Tesla"
 TODAY = dt.datetime.today().date()
 APIKEY = os.environ.get('ALPHAVANTAGE')
 
@@ -17,6 +21,7 @@ class Stock:
             formatted_key = key.split('. ')[1]
             setattr(self, formatted_key, float(value))
 
+
 class StockMonitor:
     def __init__(self, stock_symbol: str, api_key: str):
         self.URL = "https://www.alphavantage.co/query"
@@ -25,19 +30,20 @@ class StockMonitor:
 
     @property
     def daily_params(self):
-        return {'function': 'TIME_SERIES_DAILY_ADJUSTED', 'symbol':self.stock_symbol, 'apikey': self.api_key}
+        return {'function': 'TIME_SERIES_DAILY_ADJUSTED', 'symbol': self.stock_symbol, 'apikey': self.api_key}
 
     @property
     def today(self):
         return dt.datetime.today().date()
 
-    def get_daily_info(self, outputsize: str = 'compact', format: str = 'json'):
+    def get_daily_info(self, outputsize: str = 'compact', output_format: str = 'json'):
         params = self.daily_params
         params['outputsize'] = outputsize
-        params['datatype'] = format
+        params['datatype'] = output_format
         response = requests.get(self.URL, params)
         response.raise_for_status()
         data = response.json()['Time Series (Daily)']
+
         return data
 
     def get_stock_change(self, first_date: str, second_date: str):
@@ -46,32 +52,52 @@ class StockMonitor:
         second_date_stock = Stock(data[second_date])
         return first_date_stock, second_date_stock
 
-## STEP 1: Use https://www.alphavantage.co
-# When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-stock_monitor = StockMonitor(STOCK, APIKEY)
-first_stock, second_stock = stock_monitor.get_stock_change(first_date='2023-06-30',second_date='2023-06-29')
+    def get_news(self, keyword: str, dates: Union[List[str], str]):
+        if isinstance(dates, list):
+            dates = ",".join(dates)
+        params = {"access_key": os.environ.get("MEDIASTACKKEY"),
+                  "date": dates,
+                  "keywords": keyword,
+                  "language": "en",
+                  "countries": "us",
+                  "sources": "-etfdailynews",
+                  "sort": "popularity",
+                  "limit": 100}
 
-variation = [first_stock.close - 0.05 * first_stock.close, first_stock.close + 0.05 * first_stock.close]
-if second_stock.close <= variation[0] or second_stock.close >= variation[1]:
-    print('Get News!')
-else:
-    print("Don't get news")
+        response = requests.get(url=NEWS_URL, params=params)
+        response.raise_for_status()
+        news_data = pd.DataFrame(response.json()["data"])
+        filtered_news = news_data[news_data['description'].str.contains(keyword)]
+        return filtered_news
 
 
-## STEP 2: Use https://newsapi.org
-# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
+if __name__ == '__main__':
+    stock_monitor = StockMonitor(STOCK, APIKEY)
+    first_date = (TODAY - dt.timedelta(days=1)).strftime("%Y-%m-%d")
+    second_date = (TODAY - dt.timedelta(days=2)).strftime("%Y-%m-%d")
 
-## STEP 3: Use https://www.twilio.com
-# Send a seperate message with the percentage change and each article's title and description to your phone number. 
+    first_stock, second_stock = stock_monitor.get_stock_change(first_date=first_date, second_date=second_date)
 
+    variation = [first_stock.close - 0.05 * first_stock.close, first_stock.close + 0.05 * first_stock.close]
 
-# Optional: Format the SMS message like this:
-"""
-TSLA: 🔺2%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-or
-"TSLA: 🔻5%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-"""
+    if second_stock.close <= variation[0] or second_stock.close >= variation[1]:
+        print('Get News')
+    else:
+        variation = 1 - (first_stock.close / second_stock.close)
+        if variation >= 0:
+            symbol = "🔺"
+        else:
+            symbol = "🔻"
+
+        variation_message = f"{symbol} {variation:.2f}%"
+        print("Don't get news")
+        news_data = stock_monitor.get_news(keyword=COMPANY_NAME, dates=[first_date, second_date])
+        news_message = f"{COMPANY_NAME} {variation_message}\n" \
+                       f"Headline: {news_data.loc[0]['title']}\nBrief: {news_data.loc[0]['description']}"
+
+        message = client.messages.create(
+            body=news_message,
+            from_='whatsapp:+14155238886',
+            to='whatsapp:+5521996766769'
+        )
+        print(message.status)
