@@ -4,7 +4,6 @@ import os
 from twilio.rest import Client
 
 # Openweather configuration
-
 LAT = 53.34
 LON = 10.0
 URL = f"https://api.openweathermap.org/data/3.0/onecall"
