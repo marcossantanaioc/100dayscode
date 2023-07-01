@@ -27,7 +27,6 @@ for hour_index, hour in enumerate(weather_data):
     if next_hour_forecast['id'] < 700:
        WILL_RAIN = True
 
-
 if WILL_RAIN:
     message = client.messages.create(
                                   body='Bring an umbrella because it will rain!',
