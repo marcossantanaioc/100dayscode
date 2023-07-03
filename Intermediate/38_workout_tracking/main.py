@@ -73,3 +73,4 @@ if __name__ == '__main__':
     params = {'gender': 'male', 'weight_kg': 90, 'height_cm': 183, 'age': 33}
     tracker = FitnessTracker(query=user_input, params=params)
     data = tracker.publish_data()
+    print(data)
