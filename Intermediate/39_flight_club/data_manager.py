@@ -1,7 +1,8 @@
-import requests
 import os
-from typing import List, Union, Tuple, Any, Dict
+from typing import Dict
+
 import pandas as pd
+import requests
 
 
 class DataManager:
@@ -20,7 +21,7 @@ class DataManager:
         return self.data.columns
 
     @property
-    def header(self):
+    def header(self) -> Dict:
         return {"Authorization": f"Bearer {self.TOKEN}"}
 
     def edit_entry(self, data: Dict, row_number: int):
@@ -28,10 +29,30 @@ class DataManager:
         response.raise_for_status()
         return response.text
 
-    def get_iata(self, city: str):
+    def get_iata(self, city: str) -> str:
+        """
+        Returns the IATA code for city.
+
+        Parameters
+        ----------
+        city
+            Name of a city.
+        Returns
+        -------
+            IATA code.
+        """
         return self.data[self.data['city'] == city.title()]['iataCode'].item()
 
-    def get_city(self, iata: str):
+    def get_city(self, iata: str) -> str:
+        """
+        Returns the city name for a given IATA code.
+        Parameters
+        ----------
+        iata
+            The IATA code for a city.
+
+        Returns
+        -------
+            City name.
+        """
         return self.data[self.data['iataCode'] == iata.upper()]['city'].item()
-
-
