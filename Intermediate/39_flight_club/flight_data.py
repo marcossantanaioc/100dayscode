@@ -28,6 +28,16 @@ class FlightData:
     def outbound(self):
         return self.route[1]
 
+    @property
+    def outbound_date(self):
+        date = self.outbound['dTime']
+        return dt.datetime.fromtimestamp(date).strftime('%Y/%m/%d')
+
+    @property
+    def inbound_date(self):
+        date = self.inbound['dTime']
+        return dt.datetime.fromtimestamp(date).strftime('%Y/%m/%d')
+
     def format_flight(self, flight: Dict):
         departure_city = f"{flight['cityFrom']}-{flight['flyFrom']}"
         arrival_city = f"{flight['cityTo']}-{flight['flyTo']}"

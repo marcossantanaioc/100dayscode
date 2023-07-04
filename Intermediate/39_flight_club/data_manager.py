@@ -1,6 +1,5 @@
 import os
 from typing import Dict
-
 import pandas as pd
 import requests
 
@@ -29,9 +28,9 @@ class DataManager:
         response.raise_for_status()
         return response.text
 
-    def get_iata(self, city: str) -> str:
+    def get_city(self, city: str) -> str:
         """
-        Returns the IATA code for city.
+        The line in self.data that matches city.
 
         Parameters
         ----------
@@ -39,13 +38,13 @@ class DataManager:
             Name of a city.
         Returns
         -------
-            IATA code.
+            A row of data.
         """
-        return self.data[self.data['city'] == city.title()]['iataCode'].item()
+        return self.data[self.data['city'] == city.title()]
 
-    def get_city(self, iata: str) -> str:
+    def get_iata(self, iata: str) -> str:
         """
-        Returns the city name for a given IATA code.
+        Returns the row in self.data that matches the IATA code.
         Parameters
         ----------
         iata
@@ -53,6 +52,6 @@ class DataManager:
 
         Returns
         -------
-            City name.
+            A row of data.
         """
-        return self.data[self.data['iataCode'] == iata.upper()]['city'].item()
+        return self.data[self.data['iataCode'] == iata.upper()]

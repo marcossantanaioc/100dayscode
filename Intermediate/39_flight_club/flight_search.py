@@ -1,38 +1,37 @@
 import requests
 import os
-from data_manager import DataManager
-from typing import Union, List
-import datetime as dt
+from typing import List, Dict, Any
 
-TODAY = dt.datetime.today().date()
-AHEAD = (TODAY + dt.timedelta(days=6*30))
 
 class FlightSearch:
-    # This class is responsible for talking to the Flight Search API.
+    """
+    This class is responsible for talking to the Flight Search API.
+    """
     API_KEY = os.environ.get('KIWI_KEY')
     URL = "https://api.tequila.kiwi.com"
 
-    def __init__(self):
-        self.datamanager = DataManager()
-
     @property
-    def header(self):
+    def header(self) -> Dict:
+        """
+        Returns the header for the API call
+        """
         return {'apikey': self.API_KEY}
 
-    # def format_data(self, data_raw):
-    #     data_to_publish = []
-    #     for info in data_raw:
-    #         data = {'price':{}}
-    #         if info['name'] == self.query:
-    #             data['price']['iataCode'] = info.pop('code')
-    #             data['price']['city'] = info.pop('name')
-    #             data_to_publish.append(data)
-    #
-    #     return data_to_publish
+    def get_iata_fromcity(self, city: str):
+        """
+        Get the IATA code from a city name.
+        This will send a GET request to tequila using the city name as a query.
 
-    def get_iata_fromcity(self, city: str, output_langague: str = 'en-US', output_type: str = 'city'):
+        Parameters
+        ----------
+        city
+            The city name.
+        Returns
+        -------
+            IATA code.
+        """
 
-        params = {'term': city, 'locale': output_langague, 'location_types': output_type}
+        params = {'term': city, 'locale': 'en-US', 'location_types': 'city'}
         response = requests.get(f"{self.URL}/locations/query", params=params, headers=self.header)
         response.raise_for_status()
         data = response.json()['locations']
@@ -40,9 +39,21 @@ class FlightSearch:
             if res['name'].lower() == city.lower():
                 return res['code']
 
-    def get_city_fromiata(self, iata: str, output_langague: str = 'en-US', output_type: str = 'city'):
+    def get_city_fromiata(self, iata: str):
+        """
+        Get the city name from IATA code.
+        This will send a GET request to tequila using the IATA code as a query.
 
-        params = {'term': iata, 'locale': output_langague, 'location_types': output_type}
+        Parameters
+        ----------
+        iata
+            The IATA code for a city.
+        Returns
+        -------
+           City name.
+        """
+
+        params = {'term': iata, 'locale': 'en-US', 'location_types': 'city'}
         response = requests.get(f"{self.URL}/locations/query", params=params, headers=self.header)
         response.raise_for_status()
         data = response.json()['locations']
@@ -53,7 +64,11 @@ class FlightSearch:
     def search(self, city: str,
                destination: str,
                departure_from: str,
-               departure_to: str):
+               departure_to: str) -> List[Dict[Any, Any]]:
+
+        """
+        Searches tequila/kiwi for flight deals.
+        """
 
         iata = self.get_iata_fromcity(city)
         destination_iata = self.get_iata_fromcity(destination)
@@ -61,10 +76,10 @@ class FlightSearch:
         params = {'fly_from': iata,
                   'fly_to': destination_iata,
                   'curr': 'GBP',
-                  'max_stopovers':0,
-                  'one_per_city':1,
-                  'date_from':departure_from,
-                  'date_to':departure_to,
+                  'max_stopovers': 0,
+                  'one_per_city': 1,
+                  'date_from': departure_from,
+                  'date_to': departure_to,
                   "nights_in_dst_from": 7,
                   "nights_in_dst_to": 28,
                   'sort': 'price'}
@@ -72,23 +87,3 @@ class FlightSearch:
         response = requests.get(f"{self.URL}/search", params=params, headers=self.header)
         response.raise_for_status()
         return response.json()['data'][0]
-
-
-cities = ['Paris',
-          'Berlin',
-          'Tokyo',
-          'Sydney',
-          'Istanbul',
-          'Kuala Lumpur',
-          'New York',
-          'San Francisco',
-          'Cape Town']
-
-idx = 2
-datamanager = DataManager()
-searcher = FlightSearch()
-LOWEST_PRICE = 54
-res = searcher.search(city='London',
-                      destination='Paris',
-                      departure_from=TODAY.strftime("%d/%m/%Y"),
-                      departure_to=AHEAD.strftime("%d/%m/%Y"))
