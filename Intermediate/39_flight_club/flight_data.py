@@ -1,29 +1,38 @@
+from typing import Dict
 import datetime as dt
-import json
+
+
 class FlightData:
+    """
+    This class is responsible for structuring the flight data.
+    At the moment it can only deal with direct inbound and outbound flights.
 
-    def __init__(self, data):
-        self.data = data['route']
-        self.price = data['conversion']['GBP']
-        self.departure_airport_code = self.data[0]['flyFrom']
-        self.departure_city = self.data[0]['cityFrom']
-        self.arrival_airport_code = self.data[0]['flyTo']
-        self.arrival_city = self.data[0]['cityTo']
-        self.departure_time = dt.datetime.fromtimestamp(self.data[0]['dTime']).strftime('%Y-%m-%d')
-        self.arrival_time = dt.datetime.fromtimestamp(self.data[0]['aTime']).strftime('%Y-%m-%d')
+    # TODO add support for single flight and multiple routes.
 
-        self.return_departure_airport_code = self.data[1]['flyFrom']
-        self.return_departure_city = self.data[1]['cityFrom']
-        self.return_arrival_airport_code = self.data[1]['flyTo']
-        self.return_arrival_city = self.data[1]['cityTo']
-        self.return_departure_time = dt.datetime.fromtimestamp(self.data[1]['dTime']).strftime('%Y-%m-%d')
-        self.return_arrival_time = dt.datetime.fromtimestamp(self.data[1]['aTime']).strftime('%Y-%m-%d')
+    Attributes
+    ----------
+    route
+        A list of dictionaries where each element is a another dictionary with the flight route.
+        The first element of route is the inbound flight and the second element the outbound.
+    """
 
-    def __str__(self):
-        return f"{self.departure_city}-{self.departure_airport_code} to {self.arrival_city}-{self.arrival_airport_code}, from {self.departure_time} to {self.return_departure_time}"
+    def __init__(self, data: Dict):
+        self.route = data['route']
+        self.price = data['price']
 
-with open('test.json','r') as f:
-    data = json.load(f)
+    @property
+    def inbound(self):
+        return self.route[0]
 
-flightdata = FlightData(data)
-print(flightdata)
+    @property
+    def outbound(self):
+        return self.route[1]
+
+    def format_flight(self, flight: Dict):
+        departure_city = f"{flight['cityFrom']}-{flight['flyFrom']}"
+        arrival_city = f"{flight['cityTo']}-{flight['flyTo']}"
+        departure_time = f"{dt.datetime.fromtimestamp(flight['dTime']).strftime('%Y/%m/%d-%H:%M:%S')}"
+        arrival_time = f"{dt.datetime.fromtimestamp(flight['aTime']).strftime('%Y/%m/%d-%H:%M:%S')}"
+        return {'departure': {'city': departure_city,
+                              'time': departure_time},
+                'arrival': {'city': arrival_city, 'time': arrival_time}}
