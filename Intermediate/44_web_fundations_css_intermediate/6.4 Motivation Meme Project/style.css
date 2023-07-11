@@ -1,0 +1,27 @@
+html {
+    background-color: black;
+}
+
+div {
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    margin-top: 50px
+
+}
+#title {
+    color: white;
+    background-color: black;
+    font-size: 26pt;
+    font-family: 'Libre Baskerville', serif;
+}
+#image {
+    width: 100%;
+    border: 5px solid white;
+
+}
+#motivational-text {
+    font-size: 18pt;
+    color: white;
+    padding: 10px;
+}
