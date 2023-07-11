@@ -1,4 +1,5 @@
 *.ipynb
+playground/
 interview/
 interview/*
 .idea/*
