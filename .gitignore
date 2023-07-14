@@ -1,5 +1,6 @@
 *.ipynb
-playground/
+playground/index.html
+playgroundstyle.css
 interview/
 interview/*
 .idea/*
